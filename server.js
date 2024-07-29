@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 
 // Route to render the main page
 app.get("/", async (req, res) => {
-  try {
+  try {   //response object takes in data(json file) from api(index.js) and axios converts it into JS object
     const response = await axios.get(`${API_URL}/posts`);
     console.log(response);
     res.render("index.ejs", { posts: response.data });
@@ -28,7 +28,7 @@ app.get("/new", (req, res) => {
 });
 
 app.get("/edit/:id", async (req, res) => {
-  try {
+  try {   //here response object takes in specific post from API
     const response = await axios.get(`${API_URL}/posts/${req.params.id}`);
     console.log(response.data);
     res.render("modify.ejs", {

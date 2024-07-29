@@ -33,7 +33,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// GET all posts
+// GET all posts and display it at blog homepage
 app.get("/posts", async (req, res) => {
   try{
     const all= await db.query("select * from posts");
@@ -46,7 +46,7 @@ app.get("/posts", async (req, res) => {
   };
 });
 
-// GET a specific post by id
+// GET a specific blog by id which is further used to edit the specific blog
 app.get("/posts/:id", async(req, res) => {
   try{
     let p=parseInt(req.params.id);
@@ -60,7 +60,7 @@ app.get("/posts/:id", async(req, res) => {
   };
 });
 
-
+// POST a new blog when New Post button is clicked, takes in values(title,content,author) from request object
 app.post("/posts", async(req, res) => {
   try{
     let d= new Date();
@@ -75,7 +75,7 @@ app.post("/posts", async(req, res) => {
     }
 });
 
-// PATCH a post when you just want to update one parameter
+// PATCH a post when you just want to update one parameter, used when edit button of existing blog is clicked
 app.patch("/posts/:id", async (req, res) => {
   try{
     let p =req.params.id;
